@@ -21,7 +21,7 @@ while(correct==0):
         print("Enter a positive integer please.")
 
     #end else
-#end while.
+#end while
 
 while(decimal_num>0):
 

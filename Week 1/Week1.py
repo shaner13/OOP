@@ -1,2 +1,2 @@
-#first program
+#first program.
 print("Hello Shane :)")

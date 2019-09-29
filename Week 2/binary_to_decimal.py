@@ -11,7 +11,7 @@ while(i<=length):
 
 #end while
 
-#printing number in decimal.
+#printing number in decimal
 print("Your number in decimal is:\n")
 print(decimal)
 
