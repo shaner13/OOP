@@ -1,2 +1,0 @@
-#program
-print("ooooo")

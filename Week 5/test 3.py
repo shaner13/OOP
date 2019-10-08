@@ -1,2 +1,6 @@
 #test 3
-print("hey")
+import string
+string1 = string.digits
+print(string1)
+
+
