@@ -1,6 +1,6 @@
 '''Program to implement scramble using python. The program will prompt
 the user for a string of words and will then scramble each word and return
-a string of the scrambled words.
+a string of the scrambled words..
 '''
 import random
 import string
