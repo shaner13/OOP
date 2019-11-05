@@ -1,5 +1,6 @@
 '''
 Program to implement many fraction functions that support the "tuple" data type.
+and do other things.
 '''
 
 def gcd(a,b):
