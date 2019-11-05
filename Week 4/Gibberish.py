@@ -110,9 +110,3 @@ while(play == 'y' or play == 'yes'):
     play = input("Would you like to play again? y/n\n")
 
 #end while
-
-
-
-
-
-
