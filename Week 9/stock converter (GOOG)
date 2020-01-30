@@ -1,0 +1,73 @@
+'''
+
+Program to calculate the monthly average prices of Google stock 
+from November 2018 to November 2019 and tell us the six best and
+six worst months for Google.
+
+                           date  open high low close volume adj-close
+               data_list[0] [0]  [1]  [2]  [3]  [4]    [5]     [6]
+
+'''
+#function to get data list
+def get_data_list(file_name):
+    
+    data_file = open(file_name,"r")
+    data_list = [ ] #start with an empty list
+    
+    for line_str in data_file: # strip end-of-line, split on commas, and append items to list
+        data_list.append(line_str.strip().split(','))
+    data_list.pop(0)   
+    return data_list
+    
+
+#function to get average prices.
+def get_monthly_average(data_list):
+    # formula == average price = (V1 ∗ C1 + V2 ∗ C2 + ... + V n ∗ C n)/(V1 + V2 +... + Vn)
+    # vi = volume ci = adj_close 
+    
+    monthly_averages_list = []
+    average1 = 0
+    average2 = 0
+    currentMonth = data_list[0][0][3:]
+    
+    for line in data_list:
+        if line[0][3:] == currentMonth:
+            average1 += int(line[5]) * float(line[6])
+            average2 += int(line[5])
+            
+        else:
+            monthly_averages_list.append(((average1/average2),currentMonth))
+            currentMonth = line[0][3:]
+            average1 += int(line[5]) * float(line[6])
+            average2 += int(line[5])
+            
+    monthly_averages_list.append(((average1/average2),currentMonth))
+    
+    print(monthly_averages_list)
+
+    return monthly_averages_list
+
+
+#function to print the six best and six worst average prices months for Google's stock.
+#They are printed in order of highest to lowest to two decimal places.
+def print_info(monthly_averages_list):
+    months = {1:"January",2:"February",3:"March",4:"April",5:"May",6:"June",7:"July",8:"August",9:"September",10:"October",11:"November",12:"December"}
+    monthly_averages_list.sort(reverse=True)
+    
+    print("The best 6 months are:\n")
+    
+    for averages in monthly_averages_list[:6]:
+        print("{0} {1}: {2:.2f}".format(averages[1][:2],averages[1][-4:],averages[0]))
+        
+    print("The worst 6 months are:\n")
+    monthly_averages_list.sort() 
+    for averages in monthly_averages_list[:6]:
+        print("{0} {1}: {2:.2f}".format(months[int(averages[1][:2])],averages[1][-4:],averages[0]))
+    
+
+def main():
+    data_list = get_data_list("goog.csv")
+    monthly_averages_list = get_monthly_average(data_list)
+    print_info(monthly_averages_list)
+    
+main()     
